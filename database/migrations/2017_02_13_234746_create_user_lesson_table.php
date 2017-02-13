@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAnswersTable extends Migration
+class CreateUserLessonTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateAnswersTable extends Migration
      */
     public function up()
     {
-		Schema::create('answers', function (Blueprint $table) {
+		Schema::create('user_lesson', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('content');
-			$table->boolean('is_valid');
-			$table->integer('question_id')->unsigned()->nullable();
-			$table->foreign('question_id')->references('id')->on('questions');
+			$table->integer('user_id')->unsigned()->nullable();
+			$table->foreign('user_id')->references('id')->on('users');
+
+			$table->integer('lesson_id')->unsigned()->nullable();
+			$table->foreign('lesson_id')->references('id')->on('lessons');
+
+			$table->boolean('completed');
 			$table->timestamps();
         });
     }
@@ -30,6 +33,6 @@ class CreateAnswersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('answers');
+        Schema::dropIfExists('user_lesson');
     }
 }
