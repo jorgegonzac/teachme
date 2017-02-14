@@ -21,6 +21,7 @@ class CreateUserLessonTable extends Migration
 			$table->integer('lesson_id')->unsigned()->nullable();
 			$table->foreign('lesson_id')->references('id')->on('lessons');
 
+			$table->decimal('score', 5, 2);
 			$table->boolean('completed');
 			$table->timestamps();
         });
