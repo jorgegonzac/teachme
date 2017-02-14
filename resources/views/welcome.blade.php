@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>TeachMe</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -85,7 +85,7 @@
                 <div class="links">
                     <a href="#">FRD Doc</a>
                     <a href="#">HLD Doc</a>
-                    <a href="#">MOOC</a>
+                    <a href="https://es.wikipedia.org/wiki/Massive_Open_Online_Course" target="_blank">What is MOOC?</a>
                 </div>
             </div>
         </div>
