@@ -26,4 +26,24 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+	/**
+	 * Returns the associated lessons
+	 *
+	 * @return Collection
+	 */
+	public function lessons()
+	{
+		return $this->belongsToMany('App\Lesson', 'user_lesson')->withPivot('score', 'completed')->withTimestamps();
+	}
+
+	/**
+	 * Returns the associated tests
+	 *
+	 * @return Collection
+	 */
+	public function tests()
+	{
+		return $this->belongsToMany('App\Test')->withTimestamps();
+	}
 }
