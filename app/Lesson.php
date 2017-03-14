@@ -12,7 +12,7 @@ class Lesson extends Model
      * @var array
      */
     protected $fillable = [
-        'tittle', 'description', 'content_url', 'start_date', 'end_date',
+        'title', 'description', 'content_url', 'start_date', 'end_date',
     ];
 
 	/**

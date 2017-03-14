@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\CreateLessonRequest;
-use App\Http\Requests\EditLessonRequest;
-use App\Lesson;
-use Validator;
 use View;
 
-class LessonController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +14,7 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $lessons = Lesson::all();
-
-		return View::make('lessons.index', ['lessons' => $lessons]);
+		return View::make('')
     }
 
     /**
@@ -30,20 +24,18 @@ class LessonController extends Controller
      */
     public function create()
     {
-        return View::make('lessons.create');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Http\Requests\CreateLessonRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateLessonRequest $request)
+    public function store(Request $request)
     {
-        $lesson = Lesson::create($request->all());
-
-		return redirect()->back()->with('success', 'The lesson was created successfuly');
+        //
     }
 
     /**
@@ -54,9 +46,7 @@ class LessonController extends Controller
      */
     public function show($id)
     {
-        $lesson = Lesson::findOrFail($id);
-
-		return View::make('lessons.show', ['lesson' => $lesson]);
+        //
     }
 
     /**
@@ -67,26 +57,19 @@ class LessonController extends Controller
      */
     public function edit($id)
     {
-		$lesson = Lesson::findOrFail($id);
-
-		return View::make('lessons.edit', ['lesson' => $lesson]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\EditLessonRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditLessonRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $lesson = Lesson::findOrFail($id);
-
-		$lesson->fill($request->all());
-		$lesson->save();
-
-		return redirect()->back()->with('success', 'The lesson was successfuly updated');
+        //
     }
 
     /**
@@ -97,8 +80,6 @@ class LessonController extends Controller
      */
     public function destroy($id)
     {
-        Lesson::destroy($id);
-
-		return redirect()->back()->with('success', 'The lesson was destroyed successfuly');
+        //
     }
 }
