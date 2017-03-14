@@ -19,9 +19,19 @@
 						<div class="row">
 							<div class="col-lg-6 col-md-6 text-center">
 								<div class="form-group {{ $errors->first('profile_img', 'has-error') }}">
+
+									<!-- // starts profile pic -->
+									@if(empty($user->profile_img))
+									<a href="/img/avatar.png" class="thumbnail" target="_blank">
+									  	<img src="/img/avatar.png" alt="profile_pic" height="300" width="300">
+									</a>
+									@else
 									<a href="{{ asset(Storage::disk('public')->url($user->profile_img)) }}" class="thumbnail" target="_blank">
 									  	<img src="{{ asset(Storage::disk('public')->url($user->profile_img)) }}" alt="profile_pic" height="300" width="300">
 									</a>
+									@endif
+									<!-- // end profile pic -->
+
 									<label class="control-label">Upload image</label>
 									<input id="profile_img" name="profile_img" type="file" class="file">
 								</div>

@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
 			$table->integer('progress_course')->nullable();
             $table->string('email')->unique();
             $table->string('password');
+			$table->string('type')->default('user');
             $table->rememberToken();
             $table->timestamps();
         });
