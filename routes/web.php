@@ -23,4 +23,5 @@ Route::post('profile', 'ProfileController@store');
 Route::group(['prefix' => 'admin'], function () {
 	Route::resource('lessons', 'LessonController');
 	Route::resource('tests', 'TestController');
+	Route::resource('tests/{test_id}/questions', 'QuestionController');
 });
