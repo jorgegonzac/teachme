@@ -22,4 +22,5 @@ Route::get('profile', 'ProfileController@index');
 Route::post('profile', 'ProfileController@store');
 Route::group(['prefix' => 'admin'], function () {
 	Route::resource('lessons', 'LessonController');
+	Route::resource('tests', 'TestController');
 });

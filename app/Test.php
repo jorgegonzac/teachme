@@ -12,7 +12,7 @@ class Test extends Model
      * @var array
      */
     protected $fillable = [
-        'tittle', 'description', 'lesson_id'
+        'title', 'description', 'lesson_id'
     ];
 
 	/**
