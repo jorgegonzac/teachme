@@ -24,4 +24,9 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::resource('lessons', 'LessonController');
 	Route::resource('tests', 'TestController');
 	Route::resource('tests/{test_id}/questions', 'QuestionController');
+	Route::resource('users', 'UserController');
+	Route::get('users/invitations/create', 'InvitationsController@create');
+	Route::post('users/invitations', 'InvitationsController@store');
 });
+
+Route::get('register/invitation/{token}', 'InvitationsController@registerToken');
