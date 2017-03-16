@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdateProfileRequest;
 use App\User;
+use App\Lesson;
 use View;
 
 class ProfileController extends Controller
@@ -18,8 +19,11 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
+		$totalLessons = Lesson::all()->count();
+		$takenLessons = $user->lessons()->count();
+		$progressPercentage = ($takenLessons/$totalLessons) * 100 ;
 
-		return View::make('users.users.profile', ['user' => $user]);
+		return View::make('users.users.profile', ['user' => $user, 'totalLessons' => $totalLessons, 'takenLessons' => $takenLessons, 'progressPercentage' => $progressPercentage]);
     }
 
 	/**

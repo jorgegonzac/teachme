@@ -44,6 +44,17 @@ class User extends Authenticatable
 	 */
 	public function tests()
 	{
-		return $this->belongsToMany('App\Test')->withTimestamps();
+		return $this->belongsToMany('App\Test', 'user_test')->withTimestamps()->withPivot('score', 'completed');
+	}
+
+	/**
+	 * Adds scope to query so only 'user' type are returned
+	 *
+	 * @param  $query
+	 * @return \Illuminate\Database\Eloquent\Builder
+	 */
+	public function scopeOnlyUsers($query)
+	{
+		return $query->where('type', 'user');
 	}
 }

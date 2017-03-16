@@ -34,4 +34,14 @@ class Test extends Model
 	{
 		return $this->belongsTo('App\Lesson');
 	}
+
+	/**
+	 * Returns all the associated users
+	 *
+	 * @return Collection
+	 */
+	public function users()
+	{
+		return $this->belongsToMany('App\User', 'user_test')->withTimestamps()->withPivot('score', 'completed');
+	}
 }

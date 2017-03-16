@@ -70,6 +70,10 @@
 										<a href="{{ url('profile') }}">
 											Profile</a>
 
+										<!-- Profile -->
+										<a href="{{ url('grades') }}">
+											Grades</a>
+
 										<!-- logout -->
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();

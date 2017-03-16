@@ -32,11 +32,15 @@
 
 						<div class="form-group">
                             <div class="col-md-12 text-center">
+								
 							<!-- Test call to action-->
-							@if($lesson->tests->first())
-								<a class="btn btn-small btn-info" href="{{ URL::to('lesson/' . $lesson->id . '/test') }}">Start Test</a>
-							@endif
+							@foreach($lesson->tests as $test)
+								@if(! in_array($test->id, $takenTests))
+									<a class="btn btn-small btn-info" href="{{ URL::to('lesson/' . $lesson->id . '/tests/' . $test->id ) }}">Start Test # {{$test->id}}</a>
+								@endif
+							@endforeach
 							<!-- // Test call to action-->
+
 							</div>
 						</div>
 

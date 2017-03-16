@@ -23,7 +23,7 @@
 								<th>Email</th>
 								<th>Source</th>
 								<th class="hidden-xs">Created at</th>
-								<th class="hidden-xs">Updated at</th>
+								<th class="hidden-xs">Course progress</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -37,7 +37,7 @@
 							<td> {{ $user->email }} </td>
 							<td> {{ $user->source }} </td>
 							<td class="hidden-xs"> {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at)->toDateString() }} </td>
-							<td class="hidden-xs"> {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $user->updated_at)->toDateString() }} </td>
+							<td class="hidden-xs"> {{ ($user->lessons()->count()/$totalLessons) * 100 }}% </td>
 							<td>
 								<div class="row">
 									<div class="col-md-6">

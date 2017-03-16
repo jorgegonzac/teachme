@@ -35,9 +35,12 @@ Route::group(['prefix' => '/', 'middleware' => ['auth', 'role:user']], function 
 	Route::get('profile', 'ProfileController@index');
 	Route::post('profile', 'ProfileController@store');
 	Route::get('home', 'UserHomeController@index');
-
+	Route::get('lesson/{lesson}/tests/{test}', 'UserHomeController@showTest');
+	Route::post('lesson/{lesson}/tests/{test}', 'UserHomeController@gradeTest');
+	Route::get('grades', 'UserHomeController@showGrades');
 });
 
+// this route is responsible for redirecting request after login according to user's role
 Route::get('role/handler', function() {
 	$user = Auth::user();
 	if ($user->type === 'admin') {
@@ -47,4 +50,5 @@ Route::get('role/handler', function() {
 	}
 })->middleware('auth');
 
+// registers if a user creates an account via invitation link
 Route::get('register/invitation/{token}', 'InvitationsController@registerToken');

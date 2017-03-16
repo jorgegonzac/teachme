@@ -76,7 +76,7 @@
 						</div>
 
 						<div class="form-group{{ $errors->has('updated_at') ? ' has-error' : '' }}">
-							<label for="updated_at" class="col-md-4 control-label">Updated at</label>
+							<label for="updated_at" class="col-md-4 control-label">Last update</label>
 
 							<div class="col-md-6">
 								<input id="updated_at" type="text" class="form-control" name="updated_at" value="{{ $user->updated_at }}" disabled>
@@ -86,9 +86,36 @@
 						<div class="form-group ">
 							<label class="col-md-4 control-label">Course Progress</label>
 							<div class="progress  col-md-6">
-							  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-								60%
-							  </div>
+								<div class="progress-bar" role="progressbar" aria-valuenow="{{$takenLessons}}" aria-valuemin="0" aria-valuemax="{{$totalLessons}}" style="width:{{$progressPercentage}}%;">
+  								{{$progressPercentage}}%
+  							  </div>
+							</div>
+						</div>
+
+						<div class="form-group{{ $errors->has('lessons') ? ' has-error' : '' }}">
+							<label for="lessons" class="col-md-4 control-label">Lessons score</label>
+
+							<div class="col-md-6">
+
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Lesson #</th>
+											<th>Score</th>
+										</tr>
+									</thead>
+
+									<tbody>
+										@foreach($user->lessons as $lesson)
+										<tr>
+											<td> {{ $lesson->id }} </td>
+											<td> {{ $lesson->pivot->score }} </td>
+										</tr>
+									@endforeach
+									</tbody>
+								</table>
+
+
 							</div>
 						</div>
 

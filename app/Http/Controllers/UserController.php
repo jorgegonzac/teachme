@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use View;
 use App\User;
+use App\Lesson;
 
 class UserController extends Controller
 {
@@ -15,9 +16,10 @@ class UserController extends Controller
      */
     public function index()
     {
-		$users = User::all();
+		$users = User::OnlyUsers()->get();
+		$totalLessons = Lesson::all()->count();
 
-		return View::make('users.index', ['users' => $users]);
+		return View::make('users.index', ['users' => $users, 'totalLessons' => $totalLessons]);
     }
 
     /**
@@ -50,8 +52,11 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
+		$totalLessons = Lesson::all()->count();
+		$takenLessons = $user->lessons()->count();
+		$progressPercentage = ($takenLessons/$totalLessons) * 100 ;
 
-		return View::make('users.show', ['user' => $user]);
+		return View::make('users.show', ['user' => $user, 'totalLessons' => $totalLessons, 'takenLessons' => $takenLessons, 'progressPercentage' => $progressPercentage]);
     }
 
     /**
