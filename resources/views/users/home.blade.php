@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container">
@@ -10,7 +10,7 @@
 				<!-- Notifications -->
 		        @include('notifications')
 
-				
+
 
             </div>
         </div>
