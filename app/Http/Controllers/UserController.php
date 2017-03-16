@@ -15,7 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-		//
+		$users = User::all();
+
+		return View::make('users.index', ['users' => $users]);
     }
 
     /**
@@ -47,7 +49,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+		return View::make('users.show', ['user' => $user]);
     }
 
     /**
