@@ -11,6 +11,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Edit Test # {{ $test->id }}</div>
                 <div class="panel-body">
+					<a class="btn btn-small btn-info " href="{{ URL::to('admin/tests') }}">Go back</a>
+
 					@include('notifications')
 
 					{!! Form::model($test, array('url' => URL::to('admin/tests') . '/' . $test->id, 'method' => 'put', 'class' => 'form-horizontal')) !!}
@@ -73,6 +75,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     Update
                                 </button>
+								<a class="btn btn-small btn-info " href="{{ URL::to('admin/tests/' . $test->id . '/questions') }}">Edit Questions</a>
                             </div>
                         </div>
                     {!! Form::close() !!}

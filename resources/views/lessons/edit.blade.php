@@ -11,6 +11,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Edit Lesson # {{ $lesson->id }}</div>
                 <div class="panel-body">
+					<a class="btn btn-small btn-info " href="{{ URL::to('admin/lessons') }}">Go back</a>
 					@include('notifications')
 
 					{!! Form::model($lesson, array('url' => URL::to('admin/lessons') . '/' . $lesson->id, 'method' => 'put', 'class' => 'form-horizontal')) !!}

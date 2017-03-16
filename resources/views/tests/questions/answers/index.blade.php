@@ -9,14 +9,14 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Test # {{$test->id}} - Questions </div>
+                <div class="panel-heading">Test # {{$question->test->id}} - Question # {{$question->id}} - Answers </div>
                 <div class="panel-body">
 					<div class="row">
 						<div class="col-md-6 pull-left">
-							<a class="btn btn-small btn-info " href="{{ URL::to('admin/tests/' . $test->id . '/edit') }}">Go back</a>
+							<a class="btn btn-small btn-info " href="{{ URL::to('admin/tests/' . $question->test->id . '/questions/' . $question->id . '/edit') }}">Go back</a>
 						</div>
 						<div class="col-md-6 ">
-							<a class="btn btn-small btn-info pull-right" href="{{ URL::to('admin/tests/' . $test->id . '/questions/create') }}">Create Question</a>
+							<a class="btn btn-small btn-info pull-right" href="{{ URL::to('admin/tests/' . $question->test->id . '/questions/' . $question->id . '/answers/create') }}">Create Answer</a>
 						</div>
 					</div>
 
@@ -27,6 +27,7 @@
 							<tr>
 								<th>#</th>
 								<th>Content</th>
+								<th>Valid?</th>
 								<th class="hidden-xs">Created at</th>
 								<th class="hidden-xs">Updated at</th>
 								<th>Actions</th>
@@ -34,22 +35,29 @@
 						</thead>
 
 						<tbody>
-						@foreach($test->questions as $question)
+						@foreach($question->answers as $answer)
 						<tr>
-							<td> {{ $question->id }} </td>
-							<td> {{ $question->content }} </td>
-							<td class="hidden-xs"> {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $question->created_at)->toDateString() }} </td>
-							<td class="hidden-xs"> {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $question->updated_at)->toDateString() }} </td>
+							<td> {{ $answer->id }} </td>
+							<td> {{ $answer->content }} </td>
+							<td>
+								@if($answer->is_valid)
+								yes
+								@else
+								no
+								@endif
+							</td>
+							<td class="hidden-xs"> {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $answer->created_at)->toDateString() }} </td>
+							<td class="hidden-xs"> {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $answer->updated_at)->toDateString() }} </td>
 							<td>
 								<div class="row">
 									<div class="col-md-4">
-										<a class="btn btn-small btn-info" href="{{ URL::to('admin/tests/' . $test->id . '/questions/'. $question->id ) }}">Show</a>
+										<a class="btn btn-small btn-info" href="{{ URL::to('admin/tests/' . $question->test->id . '/questions/'. $question->id .'/answers/' . $answer->id) }}">Show</a>
 									</div>
 									<div class="col-md-4">
-										<a class="btn btn-small btn-warning" href="{{ URL::to('admin/tests/' . $test->id . '/questions/'. $question->id .'/edit') }}">Edit</a>
+										<a class="btn btn-small btn-warning" href="{{ URL::to('admin/tests/' . $question->test->id . '/questions/'. $question->id .'/answers/' . $answer->id . '/edit') }}">Edit</a>
 									</div>
 									<div class="col-md-4">
-										{!! Form::open(array('url' => URL::to('admin/tests') . '/' . $test->id . '/questions/'. $question->id , 'method' => 'delete', 'class' => 'form-horizontal')) !!}
+										{!! Form::open(array('url' => URL::to('admin/tests/' . $question->test->id . '/questions/'. $question->id .'/answers/' . $answer->id), 'method' => 'delete', 'class' => 'form-horizontal')) !!}
 										<div class="form-group">
 				                                <button type="submit" class="btn btn-danger">
 				                                    Destroy

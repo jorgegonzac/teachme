@@ -11,6 +11,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Send invitation link to user</div>
                 <div class="panel-body">
+					<a class="btn btn-small btn-info " href="{{ URL::to('admin/users') }}">Go back</a>
 					@include('notifications')
 
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('admin/users/invitations') }}">

@@ -11,6 +11,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Test # {{$test->id}} - Question #{{ $question->id }}</div>
                 <div class="panel-body">
+					<a class="btn btn-small btn-info " href="{{ URL::to('admin/tests/' . $question->test->id . '/questions/') }}">Go back</a>
 					@include('notifications')
 
 					<form class="form-horizontal" role="form">

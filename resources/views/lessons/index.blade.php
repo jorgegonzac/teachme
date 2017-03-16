@@ -11,6 +11,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Lessons</div>
                 <div class="panel-body">
+					<a class="btn btn-small btn-info pull-right" href="{{ URL::to('admin/lessons/create') }}">Create Lesson</a>
 					@include('notifications')
 
 					<table class="table">
@@ -21,7 +22,7 @@
 								<th class="hidden-xs">Content Link</th>
 								<th>Start Date</th>
 								<th>End Date</th>
-								<th>Actions</th>
+								<th class="text-center">Actions</th>
 							</tr>
 						</thead>
 
@@ -35,10 +36,13 @@
 							<td> {{ \Carbon\Carbon::createFromFormat('Y-m-d h:i:s', $lesson->end_date)->toDateString() }} </td>
 							<td>
 								<div class="row">
-									<div class="col-md-6">
-										<a class="btn btn-small btn-info" href="{{ URL::to('admin/lessons/' . $lesson->id . '/edit') }}">Edit</a>
+									<div class="col-md-4">
+										<a class="btn btn-small btn-info" href="{{ URL::to('admin/lessons/' . $lesson->id) }}">Show</a>
 									</div>
-									<div class="col-md-6">
+									<div class="col-md-4">
+										<a class="btn btn-small btn-warning" href="{{ URL::to('admin/lessons/' . $lesson->id . '/edit') }}">Edit</a>
+									</div>
+									<div class="col-md-4">
 										{!! Form::open(array('url' => URL::to('admin/lessons') . '/' . $lesson->id, 'method' => 'delete', 'class' => 'form-horizontal')) !!}
 										<div class="form-group">
 				                                <button type="submit" class="btn btn-danger">

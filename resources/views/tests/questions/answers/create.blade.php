@@ -9,23 +9,37 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Create a question for Test # {{ $test->id }}</div>
+                <div class="panel-heading">Create an answer for Question # {{ $question->id }}</div>
                 <div class="panel-body">
-					<a class="btn btn-small btn-info " href="{{ URL::to('admin/tests/' . $test->id . '/questions') }}">Go back</a>
+					<a class="btn btn-small btn-info " href="{{ URL::to('admin/tests/' . $question->test->id . '/questions/' . $question->id . '/answers') }}">Go back</a>
 					@include('notifications')
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('admin/tests') . '/' . $test->id . '/questions' }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('admin/tests/' . $question->test->id . '/questions/' . $question->id . '/answers') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
                             <label for="content" class="col-md-4 control-label">Content</label>
 
                             <div class="col-md-6">
-								<textarea class="form-control" rows="5" id="content" name="content" value="{{ old('content') }}" required autofocus></textarea>
+								<textarea class="form-control" rows="5" id="content" name="content" required autofocus>{{ old('content') }}</textarea>
 
                                 @if ($errors->has('content'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('content') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+						<div class="form-group{{ $errors->has('is_valid') ? ' has-error' : '' }}">
+                            <label for="content" class="col-md-4 control-label">Is this answer correct?</label>
+
+                            <div class="col-md-6">
+								<input class="form-control text-center" type="checkbox" name="is_valid" id="is_valid" value="true">
+
+                                @if ($errors->has('is_valid'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('is_valid') }}</strong>
                                     </span>
                                 @endif
                             </div>

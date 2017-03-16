@@ -11,6 +11,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Lesson #{{ $lesson->id }}</div>
                 <div class="panel-body">
+					<a class="btn btn-small btn-info " href="{{ URL::to('admin/lessons') }}">Go back</a>
 					@include('notifications')
 					<form class="form-horizontal" role="form">
                         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">

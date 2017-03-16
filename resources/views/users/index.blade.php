@@ -11,6 +11,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Registered Users</div>
                 <div class="panel-body">
+					<a class="btn btn-small btn-info pull-right" href="{{ URL::to('admin/users/invitations/create') }}">Send invitation</a>
 					@include('notifications')
 
 					<table class="table">
