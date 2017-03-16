@@ -17,11 +17,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'UserHomeController@index');
+Route::get('/home', function () {
+    return view('welcome');
+});
+
+Route::get('/home2', 'UserHomeController@index');
 Route::get('profile', 'ProfileController@index');
 Route::post('profile', 'ProfileController@store');
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
 	Route::get('/', 'AdminController@index');
 	Route::get('/home', 'AdminController@index');
 	Route::resource('lessons', 'LessonController');
@@ -34,5 +38,6 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::post('users/invitations', 'InvitationsController@store');
 	Route::get('users', 'UserController@index');
 });
+
 
 Route::get('register/invitation/{token}', 'InvitationsController@registerToken');
