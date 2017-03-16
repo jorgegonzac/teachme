@@ -19,7 +19,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-		return View::make('users.profile', ['user' => $user]);
+		return View::make('users.users.profile', ['user' => $user]);
     }
 
 	/**

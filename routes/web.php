@@ -17,14 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', function () {
-    return view('welcome');
-});
-
-Route::get('/home2', 'UserHomeController@index');
-Route::get('profile', 'ProfileController@index');
-Route::post('profile', 'ProfileController@store');
-
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
 	Route::get('/', 'AdminController@index');
 	Route::get('/home', 'AdminController@index');
@@ -39,5 +31,20 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
 	Route::get('users', 'UserController@index');
 });
 
+Route::group(['prefix' => '/', 'middleware' => ['auth', 'role:user']], function () {
+	Route::get('profile', 'ProfileController@index');
+	Route::post('profile', 'ProfileController@store');
+	Route::get('home', 'UserHomeController@index');
+
+});
+
+Route::get('role/handler', function() {
+	$user = Auth::user();
+	if ($user->type === 'admin') {
+		return redirect()->to('admin/home');
+	} else {
+		return redirect()->to('home');
+	}
+})->middleware('auth');
 
 Route::get('register/invitation/{token}', 'InvitationsController@registerToken');

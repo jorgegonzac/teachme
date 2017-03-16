@@ -26,8 +26,8 @@ class UserHomeController extends Controller
     public function index()
     {
 		// Retrieve today's lesson
-		$lesson = Lesson::where('start_date', '>=', Carbon::today())->where('end_date', '<', Carbon::tomorrow())->first();
-		return Carbon::today();
-        return view('users.home', ['lesson' => $lesson]);
+		$lesson = Lesson::where('start_date', '<=', Carbon::today())->where('end_date', '>=', Carbon::tomorrow())->first();
+
+        return view('users.users.home', ['lesson' => $lesson]);
     }
 }
