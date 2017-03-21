@@ -32,8 +32,8 @@
 							<td> {{ $lesson->id }} </td>
 							<td> {{ $lesson->title }} </td>
 							<td class="hidden-xs"> <a href="{{ $lesson->content_url }}" target="_blank"> video </a> </td>
-							<td> {{ \Carbon\Carbon::createFromFormat('Y-m-d h:i:s', $lesson->start_date)->toDateString() }} </td>
-							<td> {{ \Carbon\Carbon::createFromFormat('Y-m-d h:i:s', $lesson->end_date)->toDateString() }} </td>
+							<td> {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $lesson->start_date)->toDateString() }} </td>
+							<td> {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $lesson->end_date)->toDateString() }} </td>
 							<td>
 								<div class="row">
 									<div class="col-md-4">
