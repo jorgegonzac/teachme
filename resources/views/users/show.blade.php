@@ -106,7 +106,7 @@
 									</thead>
 
 									<tbody>
-										@foreach($user->lessons as $lesson)
+										@foreach($user->lessons()->withTrashed()->get() as $lesson)
 										<tr>
 											<td> {{ $lesson->id }} </td>
 											<td> {{ $lesson->pivot->score }} </td>

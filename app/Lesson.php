@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Lesson extends Model
 {
+	use SoftDeletes;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -14,6 +17,13 @@ class Lesson extends Model
     protected $fillable = [
         'title', 'description', 'content_url', 'start_date', 'end_date',
     ];
+
+	/**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 
 	/**
 	 * Returns all the associated tests

@@ -35,7 +35,7 @@
                             <label for="lesson" class="col-md-4 control-label">Lesson</label>
 
                             <div class="col-md-6">
-                                <input id="lesson" type="text" class="form-control" name="lesson" value="{{ $test->lesson->id }} . {{ $test->lesson->title }}" disabled>
+                                <input id="lesson" type="text" class="form-control" name="lesson" value="{{ $test->lesson()->withTrashed()->first()->id }} . {{ $test->lesson()->withTrashed()->first()->title }}" disabled>
                             </div>
                         </div>
 

@@ -38,7 +38,7 @@
 						<tr>
 							<td> {{ $test->id }} </td>
 							<td> {{ $test->title }} </td>
-							<td class="hidden-xs"> {{ $test->lesson->id }} . {{ $test->lesson->title }} </td>
+							<td class="hidden-xs"> {{ $test->lesson()->withTrashed()->first()->id }} . {{ $test->lesson()->withTrashed()->first()->title }} </td>
 							<td> {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $test->created_at)->toDateString() }} </td>
 							<td> {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $test->updated_at)->toDateString() }} </td>
 							<td>

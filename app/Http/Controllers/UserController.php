@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
 		$users = User::OnlyUsers()->get();
-		$totalLessons = Lesson::all()->count();
+		$totalLessons = Lesson::withTrashed()->get()->count();
 
 		return View::make('users.index', ['users' => $users, 'totalLessons' => $totalLessons]);
     }
@@ -52,8 +52,8 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-		$totalLessons = Lesson::all()->count();
-		$takenLessons = $user->lessons()->count();
+		$totalLessons = Lesson::withTrashed()->get()->count();
+		$takenLessons = $user->lessons()->withTrashed()->count();
 		$progressPercentage = ($takenLessons/$totalLessons) * 100 ;
 
 		return View::make('users.show', ['user' => $user, 'totalLessons' => $totalLessons, 'takenLessons' => $takenLessons, 'progressPercentage' => $progressPercentage]);
