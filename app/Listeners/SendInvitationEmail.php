@@ -29,7 +29,7 @@ class SendInvitationEmail
     {
 		$data['token'] = $event->invitation->token;
 		$email = $event->invitation->email;
-		$subject = 'You have been invited to join TeachMe';
+		$subject = 'Invite MOOC';
 		$template = 'emails.invitation';
 
 		Mail::send(
