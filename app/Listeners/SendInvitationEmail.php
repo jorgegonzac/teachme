@@ -36,6 +36,7 @@ class SendInvitationEmail
 			$template,
 			$data,
 			function($message) use ($email, $subject) {
+				$message->from('dev@mienvio.mx', 'Invite MOOC');
 				$message->to($email)->subject($subject);
 			}
 		);
